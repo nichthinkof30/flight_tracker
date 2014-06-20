@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Origin:</strong>
+  <%= @tracker.origin %>
+</p>
+
+<p>
+  <strong>Destination:</strong>
+  <%= @tracker.destination %>
+</p>
+
+<p>
+  <strong>From date:</strong>
+  <%= @tracker.from_date %>
+</p>
+
+<p>
+  <strong>To date:</strong>
+  <%= @tracker.to_date %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @tracker.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_tracker_path(@tracker) %> |
+<%= link_to 'Back', trackers_path %>

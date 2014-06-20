@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Lowest:</strong>
+  <%= @record.lowest %>
+</p>
+
+<p>
+  <strong>Highest:</strong>
+  <%= @record.highest %>
+</p>
+
+<p>
+  <strong>Tracker:</strong>
+  <%= @record.tracker_id %>
+</p>
+
+<%= link_to 'Edit', edit_record_path(@record) %> |
+<%= link_to 'Back', records_path %>

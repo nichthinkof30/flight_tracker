@@ -1,0 +1,64 @@
+agent = Mechanize.new
+page = agent.get(http://booking.airasia.com/Search.aspx
+page = agent.get("http://booking.airasia.com/Search.aspx")
+page
+^C
+page = agent.get("http://booking.airasia.com/Search.aspx")
+
+search_form = page.form
+
+origin_station = search_form.field_with(name: "ControlGroupSearchView_AvailabilitySearchInputSearchVieworiginStation1")
+origin_station.value = "KUL"
+origin = search_form.field_with(id: "ControlGroupSearchView_AvailabilitySearchInputSearchView_TextBoxMarketOrigin1")
+origin.value = "KUL"
+destination_station = search_form.field_with(name: "ControlGroupSearchView_AvailabilitySearchInputSearchViewdestinationStation1")
+destination_station.value = "ICN"
+destination = search_form.field_with(name: "ControlGroupSearchView_AvailabilitySearchInputSearchView_TextBoxMarketDestination1")
+destination.value = "ICN"
+
+day_from = search_form.field_with(name: "ControlGroupSearchView$AvailabilitySearchInputSearchView$DropDownListMarketDay1")
+day_from.value = "25"
+=> "25"
+month_from = search_form.field_with(name: "ControlGroupSearchView$AvailabilitySearchInputSearchView$DropDownListMarketMonth1")
+month_from.value = "2014-02"
+=> "2014-02"
+day_to = search_form.field_with(name: "ControlGroupSearchView$AvailabilitySearchInputSearchView$DropDownListMarketDay2")
+day_to.value = "5"
+=> "5"
+month_to = search_form.field_with(name: "ControlGroupSearchView$AvailabilitySearchInputSearchView$DropDownListMarketMonth2")
+month_to.value = "2015-03"
+=> "2015-03"
+search_form.submit
+
+
+currency = search_form.field_with(name: "ControlGroupSearchView$MultiCurrencyConversionViewSearchView$DropDownListCurrency")
+currency.value = "default"
+
+timezone = search_form.field_with(name: "MemberLoginSearchView$HFTimeZone")
+timezone.value = 480
+
+require 'watir-webdriver'
+b = Watir::Browser.new
+headless = Headless.new
+headless.start
+b.goto 'http://booking.airasia.com/Search.aspx'
+
+b.text_field(id: "ControlGroupSearchView_AvailabilitySearchInputSearchVieworiginStationMultiColumn1_1").set("Kuala Lumpur (KUL)")
+b.a(data_value: "KUL").click
+b.text_field(id: "ControlGroupSearchView_AvailabilitySearchInputSearchViewdestinationStationMultiColumn1_1").set("Seoul (ICN)")
+b.a(data_value: "ICN").click
+
+b.text_field(id: "ControlGroupSearchView_AvailabilitySearchInputSearchViewdate_picker_display_id_1").set("25/02/2015")
+b.div(id: "fourhrBooking").click
+b.text_field(id: "ControlGroupSearchView_AvailabilitySearchInputSearchViewdate_picker_display_id_2").set("03/03/2015")
+b.div(id: "fourhrBooking").click
+b.div(id: "fourhrBooking").click
+b.button(id: "ControlGroupSearchView_ButtonSubmit").click
+
+
+
+b.span(class: "total-value bold black5").text
+b.divs(class: "price").to_a.map(&:text)
+
+
+<a data-value="KUL" data-category="Malaysia" data-category-id="MY"><b>Kuala</b> Lumpur (KUL)</a>
