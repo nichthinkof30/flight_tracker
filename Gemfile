@@ -10,11 +10,12 @@ gem 'jquery-rails', '3.1.0'
 gem 'jquery-ui-rails', '4.2.1'
 gem 'jbuilder', '2.0.7'
 
-# gem 'capybara', '2.2.1'
-gem 'headless'
-gem 'watir-webdriver'
+gem 'capybara', '2.2.1'
+gem 'headless', '1.0.2'
+gem 'watir-webdriver', '0.6.10'
+gem 'selenium-webdriver', '2.42.0'
 # gem 'sucker_punch', '~> 1.0'
-gem 'whenever'
+gem 'whenever', '0.8.4'
 
 group :development, :test do
   gem 'letter_opener', '1.2.0'

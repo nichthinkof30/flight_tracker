@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
         if new_user.save
           # ScrapingJob.new.async.perform(tracker.id)
+          # ScrapingJob.new.perform
           redirect_to root_path, notice: "You will be notify when price is lower than your target. Thanks for supporting the service :)"
         end
       end

@@ -2,8 +2,10 @@ class ScrapingJob
   # include SuckerPunch::Job
 
   def perform
-    headless = Headless.new
-    headless.start
+    if Rails.env.production?
+      headless = Headless.new
+      headless.start
+    end
     b = Watir::Browser.new
     # ActiveRecord::Base.connection_pool.with_connection do
     # track = Tracker.find(id)
@@ -22,11 +24,11 @@ class ScrapingJob
         b.a(data_value: "#{track.destination}").click
 
         b.text_field(id: "ControlGroupSearchView_AvailabilitySearchInputSearchViewdate_picker_display_id_1").set("#{track.from_date}")
-        sleep(5)
+        sleep(3)
         b.send_keys :tab
 
         b.text_field(id: "ControlGroupSearchView_AvailabilitySearchInputSearchViewdate_picker_display_id_2").set("#{track.to_date}")
-        sleep(5)
+        sleep(3)
         b.send_keys :tab
         sleep(3)
 
@@ -70,6 +72,7 @@ class ScrapingJob
         end
 
         b.close
+        sleep(5)
       rescue Exception => ex
         puts "Errors occured"
         puts ex
@@ -77,7 +80,7 @@ class ScrapingJob
       end
     end
     # end
-    headless.destroy
+    headless.destroy if Rails.env.production?
   end
 
 
