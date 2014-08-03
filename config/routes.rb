@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   resources :users
   resources :records
   resources :trackers
+  resources :feedbacks
 
 end
