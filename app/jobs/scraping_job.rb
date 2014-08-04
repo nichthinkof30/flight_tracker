@@ -6,11 +6,11 @@ class ScrapingJob
       headless = Headless.new
       headless.start
     end
-    b = Watir::Browser.new
     # ActiveRecord::Base.connection_pool.with_connection do
     # track = Tracker.find(id)
     Tracker.all.each do |track|
       begin
+        b = Watir::Browser.new
         b.goto 'http://booking.airasia.com/Search.aspx'
         sleep(3)
         origin_name = Tracker::LOCATION_FROM.find(track.origin).first[0]

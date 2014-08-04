@@ -19,25 +19,25 @@
           <div class="panel-body">
             <%= render partial: 'partials/controls/flash', locals: { flash: flash } %>
 
-            <%= form_tag feedbacks_path, method: :post, role: 'form', class: 'form-horizontal' do %>
+            <%= form_for @feedback, html: { role: 'form', class: 'form-horizontal' } do |f| %>
               <div class="form-group">
-                <%= label_tag :sender_name, 'Name', class: 'col-sm-4 control-label' %>
+                <%= f.label :sender_name, 'Name', class: 'col-sm-4 control-label' %>
                 <div class="col-sm-8">
-                  <%= text_field_tag :sender_name, '', class: 'form-control' %>
+                  <%= f.text_field :sender_name, class: 'form-control' %>
                 </div>
               </div>
 
               <div class="form-group">
-                <%= label_tag :sender_email, 'Email', class: 'col-sm-4 control-label' %>
+                <%= f.label :sender_email, 'Email', class: 'col-sm-4 control-label' %>
                 <div class="col-sm-8">
-                  <%= email_field_tag :sender_email, '', class: 'form-control', placeholder: "Your Personal Email", required: true %>
+                  <%= f.email_field :sender_email, class: 'form-control', placeholder: "Your Personal Email", required: true %>
                 </div>
               </div>
 
               <div class="form-group">
-                <%= label_tag :comment, 'Comment', class: 'col-sm-4 control-label' %>
+                <%= f.label :comment, 'Comment', class: 'col-sm-4 control-label' %>
                 <div class="col-sm-8">
-                  <%= text_area_tag :comment, '', class: 'form-control', placeholder: "Comments", required: true %>
+                  <%= f.text_area :comment, class: 'form-control', placeholder: "Comments", required: true %>
                 </div>
               </div>
 
